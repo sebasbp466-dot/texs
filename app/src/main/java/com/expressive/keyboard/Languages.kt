@@ -277,7 +277,7 @@ object Languages {
 
     fun enabled(settings: KeyboardSettings): List<KeyboardLanguage> =
         settings.languages.split(',').map { it.trim() }.filter { it.isNotEmpty() }.distinct().mapNotNull(::byId)
-            .ifEmpty { listOf(RU, EN) }
+            .ifEmpty { listOfNotNull(byId("es"), EN) }
 
     /** Язык из плагина: { "id", "name", "label", "locale", "rows": ["...", ...], "shift": {..}, "variants": {..} }. */
     fun parse(o: JSONObject, pluginId: String): KeyboardLanguage {

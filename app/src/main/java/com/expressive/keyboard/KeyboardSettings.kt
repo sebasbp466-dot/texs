@@ -223,7 +223,7 @@ data class KeyboardSettings(
     // --- оформление из плагина ---
     val skinPlugin: String = "",
     // --- языки и подсказки ---
-    val languages: String = "ru,en",              // включённые языки по порядку
+    val languages: String = "es,en",              // включённые языки по порядку
     val autoCorrectStrength: String = "SAFE",     // SAFE — только уверенные исправления | NORMAL
     val dictAutoDownload: Boolean = true,         // скачивать словарь языка при включении
     val punctuationKeys: Boolean = true,          // «,» и «.» по бокам пробела, как в Gboard
@@ -377,7 +377,7 @@ object KeyboardPrefs {
             autoPair = p.getBoolean("auto_pair", false),
             incognito = p.getBoolean("incognito", false),
             skinPlugin = p.getString("skin_plugin", "") ?: "",
-            languages = p.getString("languages", "ru,en")?.ifBlank { "ru,en" } ?: "ru,en",
+            languages = p.getString("languages", "es,en")?.ifBlank { "es,en" } ?: "es,en",
             autoCorrectStrength = p.getString("auto_correct_strength", "SAFE") ?: "SAFE",
             dictAutoDownload = p.getBoolean("dict_auto_download", true),
             punctuationKeys = p.getBoolean("punctuation_keys", true),
