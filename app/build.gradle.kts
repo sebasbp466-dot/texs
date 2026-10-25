@@ -9,7 +9,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.expressive.keyboard"
+        applicationId = "com.texs.keyboard"
         minSdk = 26
         targetSdk = 35
         versionCode = 15
