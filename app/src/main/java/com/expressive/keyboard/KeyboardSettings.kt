@@ -231,7 +231,7 @@ data class KeyboardSettings(
     val spaceRightKey: String = "",               // …и справа
     val systemSpellcheck: Boolean = true,         // спрашивать системную проверку правописания (Gboard, Samsung)
     val smartPunctuation: Boolean = true,         // «слово ,» → «слово,»
-    val translateTarget: String = "en",
+    val translateTarget: String = "es",
     // --- панель инструментов ---
     val toolbarOrder: String = "",
     val toolbarHidden: String = "",
@@ -385,7 +385,7 @@ object KeyboardPrefs {
             spaceRightKey = p.getString("space_right_key", "") ?: "",
             systemSpellcheck = p.getBoolean("system_spellcheck", true),
             smartPunctuation = p.getBoolean("smart_punctuation", true),
-            translateTarget = p.getString("translate_target", "en") ?: "en",
+            translateTarget = p.getString("translate_target", "es") ?: "es",
             toolbarOrder = p.getString("toolbar_order", "") ?: "",
             toolbarHidden = p.getString("toolbar_hidden", "") ?: "",
             emojiFontVersion = p.getLong("emoji_font_version", 0L),

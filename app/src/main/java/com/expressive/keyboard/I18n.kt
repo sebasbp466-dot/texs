@@ -16,21 +16,25 @@ object I18n {
         private set
 
     private fun systemLang(): String =
-        if (Locale.getDefault().language in setOf("ru", "uk", "be", "kk", "ky", "tg", "tt", "ba", "uz")) "ru" else "en"
+        "es"
 
     /** setting: SYSTEM, ru или en. */
     fun apply(setting: String) {
         val next = when (setting) {
-            "ru", "en" -> setting
+            "ru", "en", "es" -> setting
             else -> systemLang()
         }
         if (next != lang) lang = next
     }
 
-    val isEnglish: Boolean get() = lang == "en"
+    val isEnglish: Boolean get() = lang != "ru"
 }
 
-fun tr(ru: String): String = if (I18n.isEnglish) EN_STRINGS[ru] ?: ru else ru
+fun tr(ru: String): String = when (I18n.lang) {
+    "ru" -> ru
+    "es" -> EN_STRINGS[ru]?.let { ES_STRINGS[it] ?: it } ?: ru
+    else -> EN_STRINGS[ru] ?: ru
+}
 
 /** Подстановки {0}, {1}…: tr("Словарь «{0}»: {1} слов", name, n). */
 fun tr(ru: String, vararg args: Any?): String {

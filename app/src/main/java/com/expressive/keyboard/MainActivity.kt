@@ -338,7 +338,7 @@ internal fun HomePage(settings: KeyboardSettings, onNavigate: (SettingsPage) -> 
     SettingsSection(null) {
         ChoiceItem(
             Icons.Rounded.Translate, "Язык приложения", null,
-            listOf("SYSTEM" to "Как в системе", "ru" to "Русский", "en" to "English"), settings.appLanguage
+            listOf("SYSTEM" to "Как в системе", "ru" to "Русский", "en" to "English", "es" to "Español"), settings.appLanguage
         ) { v -> KeyboardPrefs.edit(context) { putString("app_language", v) } }
     }
     SettingsSection("Дизайн") {
@@ -750,6 +750,19 @@ internal fun TypingPage(settings: KeyboardSettings, part: SettingsPage) {
         AnimatedVisibility(settings.glideTyping) {
             ToggleItem(Icons.Rounded.Timeline, "След за пальцем", null, settings.glideTrail) {
                 KeyboardPrefs.edit(context) { putBoolean("glide_trail", it) }
+            }
+            run {
+                val ctx = context
+                val blurOn = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(TexsBlur.enabled(ctx)) }
+                ToggleItem(Icons.Rounded.Timeline, "Desenfoque de fondo (Android 12+)", "Desenfoca lo que hay detrás del teclado. Aplica el tema Texs Blur para teclas transparentes", blurOn.value) {
+                    blurOn.value = it
+                    TexsBlur.setEnabled(ctx, it)
+                }
+                val overlayOn = androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(TexsBlur.overlay(ctx)) }
+                ToggleItem(Icons.Rounded.Timeline, "Teclado sobre la app", "La app no se encoge y se ve detrás del teclado, pero puede tapar el campo de texto", overlayOn.value) {
+                    overlayOn.value = it
+                    TexsBlur.setOverlay(ctx, it)
+                }
             }
         }
     }

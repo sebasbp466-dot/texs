@@ -1,0 +1,34 @@
+{
+  "id": "texs.blur",
+  "name": "Texs Blur",
+  "version": "1.0",
+  "author": "texs",
+  "description": "Teclado transparente: se ve la app desenfocada detrás",
+  "icon": "🌫️",
+  "theme": {
+    "mode": "DARK",
+    "shape": "CIRCLE",
+    "keyOpacity": 1.0,
+    "colors": {
+      "background": "#00000000",
+      "key": "#26FFFFFF",
+      "keyText": "#FFFFFFFF",
+      "func": "#1AFFFFFF",
+      "funcText": "#FFFFFFFF",
+      "accent": "#66FFFFFF",
+      "accentText": "#FFFFFFFF"
+    }
+  },
+  "skin": {
+    "keyboard": { "background": "#00000000" },
+    "colors": { "accent": "#99FFFFFF", "keyText": "#FFFFFF" },
+    "keys": {
+      "*": { "material": "solid", "background": "#26FFFFFF", "pressedBackground": "#55FFFFFF", "text": "#FFFFFF", "shape": "rounded", "radius": 14, "press": "scale" },
+      "func": { "background": "#1AFFFFFF" },
+      "space": { "background": "#1AFFFFFF" },
+      "enter": { "background": "#66FFFFFF", "shape": "pill" }
+    },
+    "popup": { "background": "#CC202020", "pressedBackground": "#66FFFFFF", "text": "#FFFFFF" },
+    "chips": { "background": "#00000000", "pressedBackground": "#33FFFFFF", "text": "#FFFFFF" }
+  }
+}

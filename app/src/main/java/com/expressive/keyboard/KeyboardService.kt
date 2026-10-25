@@ -636,6 +636,7 @@ class ComposeKeyboardService : InputMethodService(),
         runCatching {
             w.setBackgroundDrawable(ColorDrawable(AndroidColor.TRANSPARENT))
             WindowCompat.setDecorFitsSystemWindows(w, false)
+            applyTexsBlur(w)
             navColor?.let {
                 @Suppress("DEPRECATION")
                 w.navigationBarColor = it
@@ -646,6 +647,27 @@ class ComposeKeyboardService : InputMethodService(),
     }
 
     // ------------------------------------------------------------------ поле ввода
+
+    private fun applyTexsBlur(w: Window) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return
+        if (!TexsBlur.enabled(this)) {
+            w.setBackgroundBlurRadius(0)
+            return
+        }
+        w.setBackgroundDrawable(ColorDrawable(AndroidColor.argb(28, 0, 0, 0)))
+        w.setBackgroundBlurRadius(TexsBlur.radius(this))
+    }
+
+    override fun onComputeInsets(outInsets: android.inputmethodservice.InputMethodService.Insets) {
+        super.onComputeInsets(outInsets)
+        if (TexsBlur.overlay(this) && !isFullscreenMode) {
+            val h = window?.window?.decorView?.height ?: return
+            if (h > 0) {
+                outInsets.contentTopInsets = h
+                outInsets.visibleTopInsets = h
+            }
+        }
+    }
 
     private fun computeFlags(info: EditorInfo?): FieldFlags {
         if (info == null) return FieldFlags()
